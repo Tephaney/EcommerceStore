@@ -5,6 +5,8 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
+import { useParams } from "react-router-dom";
+import { popularProducts } from "../data";
 
 const Container = styled.div``;
 
@@ -26,7 +28,7 @@ const Image = styled.img`
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0px 50px;
-  ${mobile({padding: "10px" })}
+  ${mobile({ padding: "10px" })}
 `;
 
 const Title = styled.h1`
@@ -51,13 +53,12 @@ const FilterContainer = styled.div`
   margin: 30px 0px;
   display: flex;
   justify-content: space-between;
-  ${mobile({width: "100%" })}
+  ${mobile({ width: "100%" })}
 `;
 
 const Filter = styled.div`
   display: flex;
   align-items: center;
-  
 `;
 
 const FilterTitle = styled.span`
@@ -88,7 +89,7 @@ const AddContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  ${mobile({width: "100%" })}
+  ${mobile({ width: "100%" })}
 `;
 
 const AmountContainer = styled.div`
@@ -125,21 +126,27 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+  const { id } = useParams();
+  console.log("My id", id);
+  const product = popularProducts.find((p) => {
+    return p.id === +id;
+  });
+  console.log("product", product);
   return (
     <Container>
       <Navbar />
       <Announcement />
       <Wrapper>
         <ImgContainer>
-          <Image src={require("../assets/Rich In Faith.png")} />
+          <Image src={product.img} />
         </ImgContainer>
         <InfoContainer>
-          <Title>Rich In Faith Unisex T-Shirt</Title>
+          <Title>{product.title}</Title>
           <Desc>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
             facilis perferendis numquam. Lorem ipsum dolor sit amet.
           </Desc>
-          <Price>$20.00</Price>
+          <Price>${product.price}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>

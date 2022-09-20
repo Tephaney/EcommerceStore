@@ -3,6 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Badge } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { mobile } from "../responsive";
 
 const Container = styled.div`
@@ -70,6 +71,7 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+  let navigate = useNavigate();
   return (
     <Container>
       <Wrapper>
@@ -81,15 +83,44 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>Meaningful Apparel</Logo>
+          <Logo
+            onClick={() => {
+              navigate(`/`);
+            }}
+          >
+            Meaningful Apparel
+          </Logo>
         </Center>
         <Right>
-          <MenuItem>COLLECTIONS</MenuItem>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN-IN</MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate(`/products`);
+            }}
+          >
+            COLLECTIONS
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate(`/register`);
+            }}
+          >
+            REGISTER
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate(`/login`);
+            }}
+          >
+            SIGN-IN
+          </MenuItem>
           <MenuItem>
-            <Badge badgeContent={4} color="warning">
-              <ShoppingCartOutlined color="action" />
+            <Badge badgeContent={3} color="warning">
+              <ShoppingCartOutlined
+                color="action"
+                onClick={() => {
+                  navigate(`/cart`);
+                }}
+              />
             </Badge>
           </MenuItem>
         </Right>

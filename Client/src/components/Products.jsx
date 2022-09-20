@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { popularProducts } from "../data";
 import Product from "./Product";
+import { useParams } from "react-router-dom";
 
 const Container = styled.div`
   padding: 20px;
@@ -10,9 +11,16 @@ const Container = styled.div`
 `;
 
 const Products = () => {
+  const { collection } = useParams();
+  console.log("my collection", collection);
+  const filteredProducts = popularProducts.filter((p) => {
+    if (!collection) return true;
+    return p.collection === collection;
+  });
+
   return (
     <Container>
-      {popularProducts.map((item) => (
+      {filteredProducts.map((item) => (
         <Product item={item} key={item.id} />
       ))}
     </Container>

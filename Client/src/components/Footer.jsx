@@ -7,6 +7,7 @@ import {
   Twitter,
 } from "@mui/icons-material";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { mobile } from "../responsive";
 
 const Container = styled.div`
@@ -106,6 +107,7 @@ const Payment = styled.img`
 `;
 
 const Footer = () => {
+  let navigate = useNavigate();
   return (
     <Container>
       <Left>
@@ -129,15 +131,51 @@ const Footer = () => {
       <Center>
         <Title>Links</Title>
         <List>
-          <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
-          <ListItem>My Account</ListItem>
+          <ListItem
+            onClick={() => {
+              navigate(`/`);
+            }}
+          >
+            Home
+          </ListItem>
+          <ListItem
+            onClick={() => {
+              navigate(`/cart`);
+            }}
+          >
+            Cart
+          </ListItem>
+          <ListItem
+            onClick={() => {
+              navigate(`/login`);
+            }}
+          >
+            My Account
+          </ListItem>
           <ListItem>Track Order</ListItem>
-          <ListItem>Faith</ListItem>
+          <ListItem
+            onClick={() => {
+              navigate(`/products/FAITH`);
+            }}
+          >
+            Faith
+          </ListItem>
           <ListItem>Wish List</ListItem>
-          <ListItem>Family</ListItem>
+          <ListItem
+            onClick={() => {
+              navigate(`/products/FAMILY`);
+            }}
+          >
+            Family
+          </ListItem>
           <ListItem>Terms & Conditions</ListItem>
-          <ListItem>Adoption</ListItem>
+          <ListItem
+            onClick={() => {
+              navigate(`/products/ADOPTION`);
+            }}
+          >
+            Adoption
+          </ListItem>
         </List>
       </Center>
       <Right>
